@@ -16,18 +16,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import OutputStream
-import InputStream
+from Writable import AbstractValueWritable
 
-import SequenceFile
-import ArrayFile
-import MapFile
-import SetFile
+class BytesWritable(AbstractValueWritable):
+    def write(self, data_output):
+        data_output.writeBytes(self._value)
 
-from Writable import *
-from IntWritable import *
-from BytesWritable import *
-from Text import *
-import WritableUtils
+    def readFields(self, data_input):
+        self._value = data_input.readBytes(data_input.size())
 
-import compress

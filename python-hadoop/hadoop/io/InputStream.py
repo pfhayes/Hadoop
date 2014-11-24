@@ -140,6 +140,10 @@ class DataInputStream(InputStream):
         data = self._stream.read(1)
         return struct.unpack(">b", data)[0]
 
+    def readBytes(self, length):
+        data = self._stream.read(length)
+        return [struct.unpack(">b", d)[0] for d in data]
+
     def readUByte(self):
         data = self._stream.read(1)
         return struct.unpack("B", data)[0]

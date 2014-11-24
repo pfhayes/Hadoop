@@ -75,6 +75,10 @@ class DataOutputStream(object):
         assert len(data) == 1
         return self._stream.write(data)
 
+    def writeBytes(self, value):
+        for b in value:
+            self.writeByte(b)
+
     def writeUByte(self, value):
         data = struct.pack("B", value)
         assert len(data) == 1
