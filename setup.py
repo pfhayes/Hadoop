@@ -9,8 +9,8 @@ setup(name='Hadoop',
       author='Matteo Bertozzi',
       author_email='theo.bertozzi@gmail.com',
       url='http://hadoop.apache.org',
-      packages=["hadoop", 'hadoop.util', 'hadoop.io', 'hadoop.io.compress',
-                "hadoop.pydoop"],
+      packages=["python_hadoop.hadoop", 'python_hadoop.hadoop.util', 'python_hadoop.hadoop.io', 'python_hadoop.hadoop.io.compress',
+                "python_hadoop.hadoop.pydoop"],
       extras_require = {
         'pydoop': ['pydoop>=0.9.1']
         }
