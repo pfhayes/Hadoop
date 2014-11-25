@@ -20,8 +20,10 @@ from Writable import AbstractValueWritable
 
 class BytesWritable(AbstractValueWritable):
     def write(self, data_output):
+        data_output.writeInt(len(self._value))
         data_output.writeBytes(self._value)
 
     def readFields(self, data_input):
-        self._value = data_input.readBytes(data_input.size())
+        size = data_input.readInt()
+        self._value = data_input.readBytes(size)
 
