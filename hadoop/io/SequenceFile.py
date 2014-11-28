@@ -122,7 +122,7 @@ class Writer(object):
     COMPRESSION_BLOCK_SIZE = 1000000
 
     def __init__(self, path, key_class, value_class, metadata, compress=False, block_compress=False):
-        if isinstance(path, str):
+        if isinstance(path, basestring):
             if os.path.exists(path):
                 raise IOError("File %s already exists." % path)
             fd = open(path, 'wb')
