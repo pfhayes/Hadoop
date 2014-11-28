@@ -32,8 +32,8 @@ class OutputStream(object):
         raise NotImplementedError
 
 class FileOutputStream(OutputStream):
-    def __init__(self, path):
-        self._fd = open(path, 'wb')
+    def __init__(self, fd):
+        self._fd = fd
 
     def close(self):
         self._fd.close()

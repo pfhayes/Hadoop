@@ -122,8 +122,13 @@ class Writer(object):
     COMPRESSION_BLOCK_SIZE = 1000000
 
     def __init__(self, path, key_class, value_class, metadata, compress=False, block_compress=False):
-        if os.path.exists(path):
-            raise IOError("File %s already exists." % path)
+        if isinstance(path, str):
+            if os.path.exists(path):
+                raise IOError("File %s already exists." % path)
+            fd = open(path, 'wb')
+        else:
+            fd = path
+        self._stream = DataOutputStream(FileOutputStream(fd))
 
         self._key_class = key_class
         self._value_class = value_class
@@ -141,8 +146,6 @@ class Writer(object):
 
         self._last_sync = 0
         self._block = None
-
-        self._stream = DataOutputStream(FileOutputStream(path))
 
         # sync is 16 random bytes
         self._sync = md5('%s@%d' % (uuid1().bytes, int(time() * 1000))).digest()
